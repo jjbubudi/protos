@@ -1,0 +1,25 @@
+language: generic
+sudo: required
+
+branches:
+  only:
+  - master
+  - /^v\d+\.\d+\.\d+(-\S*)?$/
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: test
+      script: make ci
+
+    - stage: release
+      if: branch = master OR tag IS present
+      before_script:
+        - git config --global user.email "support@travis-ci.org"
+        - git config --global user.name "travisbot"
+      script: make release-go
+
+notifications:
+  email: false

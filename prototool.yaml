@@ -1,0 +1,12 @@
+protoc:
+  version: 3.7.1
+lint:
+  group: uber1
+  rules:
+    remove:
+      - FILE_OPTIONS_EQUAL_GO_PACKAGE_PB_SUFFIX
+generate:
+  plugins:
+    - name: go
+      flags: plugins=grpc,paths=source_relative
+      output: .gen/go

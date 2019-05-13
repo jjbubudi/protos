@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package jimmyau.tides;
+
+option go_package = "github.com/jjbubudi/protos-go/tides";
+option java_multiple_files = true;
+option java_outer_classname = "ApiProto";
+option java_package = "com.jimmyau.tides";
+
+import "google/protobuf/timestamp.proto";
+
+service TidesService {
+  rpc RealtimeTides(RealtimeTidesRequest) returns (RealtimeTidesResponse);
+  rpc PredictedTides(PredictedTidesRequest) returns (PredictedTidesResponse);
+}
+
+message RealtimeTidesRequest {}
+
+message RealtimeTidesResponse {
+  google.protobuf.Timestamp time = 1;
+  double meters = 2;
+}
+
+message PredictedTidesRequest {
+  google.protobuf.Timestamp time = 1;
+}
+
+message PredictedTidesResponse {
+  repeated Prediction predictions = 1;
+  message Prediction {
+    google.protobuf.Timestamp time = 1;
+    double meters = 2;
+  }
+}

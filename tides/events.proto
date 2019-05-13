@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package jimmyau.tides;
+
+option go_package = "github.com/jjbubudi/protos-go/tides";
+option java_multiple_files = true;
+option java_outer_classname = "EventsProto";
+option java_package = "com.jimmyau.tides";
+
+import "google/protobuf/timestamp.proto";
+
+message TideRecorded {
+  google.protobuf.Timestamp time = 1;
+  double meters = 2;
+}
+
+message TidePredicted {
+  google.protobuf.Timestamp time = 1;
+  repeated Prediction predictions = 2;
+  message Prediction {
+    google.protobuf.Timestamp time = 1;
+    double meters = 2;
+  }
+}
