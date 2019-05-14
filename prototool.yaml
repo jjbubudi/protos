@@ -10,3 +10,9 @@ generate:
     - name: go
       flags: plugins=grpc,paths=source_relative
       output: .gen/go
+    - name: js
+      flags: import_style=commonjs,binary
+      output: .gen/web
+    - name: grpc-web
+      flags: import_style=commonjs+dts,mode=grpcwebtext
+      output: .gen/web

@@ -19,7 +19,11 @@ jobs:
       before_script:
         - git config --global user.email "support@travis-ci.org"
         - git config --global user.name "travisbot"
-      script: make release-go
+      script:
+        - make generate
+        - sudo chown -R travis:travis /home/travis/
+        - LANG=go bash release/git.sh
+        - LANG=web bash release/git.sh
 
 notifications:
   email: false

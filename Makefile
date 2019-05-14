@@ -1,4 +1,4 @@
-PROTOTOOL = docker run --rm --user $$UID:$$UID -v `pwd`:/work uber/prototool:1.7.0 prototool
+PROTOTOOL = docker run --rm --user $$UID:$$GID -v `pwd`:/work uber/prototool:1.7.0 prototool
 
 .PHONY: generate
 generate:
@@ -18,10 +18,6 @@ lint:
 .PHONY: format
 format:
 	@$(PROTOTOOL) format -w
-
-.PHONY: release-go
-release-go: generate
-	@./build/go/release.sh
 
 .PHONY: clean
 clean:
