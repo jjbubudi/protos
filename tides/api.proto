@@ -26,6 +26,7 @@ message PredictedTidesRequest {
 }
 
 message PredictedTidesResponse {
+  google.protobuf.Timestamp time = 2;
   repeated Prediction predictions = 1;
   message Prediction {
     google.protobuf.Timestamp time = 1;
